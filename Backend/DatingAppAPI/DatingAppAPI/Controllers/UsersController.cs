@@ -16,7 +16,7 @@ namespace DatingAppAPI.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("")]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
             return await _context.Users.AsNoTracking().ToListAsync();
@@ -26,6 +26,13 @@ namespace DatingAppAPI.Controllers
         public async Task<ActionResult<AppUser>> GetUser(Guid id)
         {
             return await _context.Users.FindAsync(id);
+        }
+
+        [HttpPost]
+        public async Task Post([FromBody]AppUser appUser)
+        {
+            _context.Users.Add(appUser);
+            await _context.SaveChangesAsync();
         }
     }
 }

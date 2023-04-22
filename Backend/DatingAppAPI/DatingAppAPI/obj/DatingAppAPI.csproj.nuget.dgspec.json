@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alan Barbosa\\Documents\\DatingApp\\DatingAppAPI\\DatingAppAPI\\DatingAppAPI.csproj": {}
+    "C:\\Users\\Alan Barbosa\\Desktop\\DatingApp\\Dating-App\\Backend\\DatingAppAPI\\DatingAppAPI\\DatingAppAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alan Barbosa\\Documents\\DatingApp\\DatingAppAPI\\DatingAppAPI\\DatingAppAPI.csproj": {
+    "C:\\Users\\Alan Barbosa\\Desktop\\DatingApp\\Dating-App\\Backend\\DatingAppAPI\\DatingAppAPI\\DatingAppAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alan Barbosa\\Documents\\DatingApp\\DatingAppAPI\\DatingAppAPI\\DatingAppAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Alan Barbosa\\Desktop\\DatingApp\\Dating-App\\Backend\\DatingAppAPI\\DatingAppAPI\\DatingAppAPI.csproj",
         "projectName": "DatingAppAPI",
-        "projectPath": "C:\\Users\\Alan Barbosa\\Documents\\DatingApp\\DatingAppAPI\\DatingAppAPI\\DatingAppAPI.csproj",
+        "projectPath": "C:\\Users\\Alan Barbosa\\Desktop\\DatingApp\\Dating-App\\Backend\\DatingAppAPI\\DatingAppAPI\\DatingAppAPI.csproj",
         "packagesPath": "C:\\Users\\Alan Barbosa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alan Barbosa\\Documents\\DatingApp\\DatingAppAPI\\DatingAppAPI\\obj\\",
+        "outputPath": "C:\\Users\\Alan Barbosa\\Desktop\\DatingApp\\Dating-App\\Backend\\DatingAppAPI\\DatingAppAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Alan Barbosa\\AppData\\Roaming\\NuGet\\NuGet.Config",

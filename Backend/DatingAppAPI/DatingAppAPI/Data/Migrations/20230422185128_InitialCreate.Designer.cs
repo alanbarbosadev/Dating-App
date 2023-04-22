@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatingAppAPI.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230422135255_InitialCreation")]
-    partial class InitialCreation
+    [Migration("20230422185128_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,9 +24,6 @@ namespace DatingAppAPI.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("MyProperty")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("UserName")
                         .IsRequired()
