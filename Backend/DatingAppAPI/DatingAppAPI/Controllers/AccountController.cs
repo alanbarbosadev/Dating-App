@@ -1,5 +1,6 @@
 ﻿using DatingAppAPI.Data;
 using DatingAppAPI.DTOs;
+using DatingAppAPI.Interfaces;
 using DatingAppAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,14 +12,16 @@ namespace DatingAppAPI.Controllers
     public class AccountController : BaseController
     {
         private readonly DataContext _context;
+        private readonly ITokenService _tokenService;
 
-        public AccountController(DataContext context)
+        public AccountController(DataContext context, ITokenService tokenService)
         {
             _context = context;
+            _tokenService = tokenService;
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<AppUser>> Register(RegisterDTO registerDTO)
+        public async Task<ActionResult<UserDTO>> Register(RegisterDTO registerDTO)
         {
             if (await UserExists(registerDTO.UserName)) return BadRequest("This username is already in use");
 
@@ -34,11 +37,15 @@ namespace DatingAppAPI.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return Ok(user);
+            return new UserDTO()
+            {
+                UserName = user.UserName,
+                Token = _tokenService.CreateToken(user)
+            };
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<AppUser>> Login(LoginDTO loginDTO)
+        public async Task<ActionResult<UserDTO>> Login(LoginDTO loginDTO)
         {
             var user = await _context.Users
                 .FirstOrDefaultAsync(x => x.UserName == loginDTO.UserName.ToLower());
@@ -54,7 +61,11 @@ namespace DatingAppAPI.Controllers
                 if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid password");
             }
 
-            return user;
+            return new UserDTO()
+            {
+                UserName = user.UserName,
+                Token = _tokenService.CreateToken(user)
+            };
         }
 
         private async Task<bool> UserExists(string userName)

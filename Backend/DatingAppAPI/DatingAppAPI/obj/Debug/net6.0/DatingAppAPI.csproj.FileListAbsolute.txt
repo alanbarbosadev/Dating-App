@@ -104,3 +104,11 @@ C:\Users\Alan Barbosa\Desktop\DatingApp\Dating-App\Backend\DatingAppAPI\DatingAp
 C:\Users\Alan Barbosa\Desktop\DatingApp\Dating-App\Backend\DatingAppAPI\DatingAppAPI\obj\Debug\net6.0\ref\DatingAppAPI.dll
 C:\Users\Alan Barbosa\Desktop\DatingApp\Dating-App\Backend\DatingAppAPI\DatingAppAPI\obj\Debug\net6.0\DatingAppAPI.pdb
 C:\Users\Alan Barbosa\Desktop\DatingApp\Dating-App\Backend\DatingAppAPI\DatingAppAPI\obj\Debug\net6.0\DatingAppAPI.genruntimeconfig.cache
+C:\Users\Alan Barbosa\Desktop\DatingApp\Dating-App\Backend\DatingAppAPI\DatingAppAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Alan Barbosa\Desktop\DatingApp\Dating-App\Backend\DatingAppAPI\DatingAppAPI\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Alan Barbosa\Desktop\DatingApp\Dating-App\Backend\DatingAppAPI\DatingAppAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Alan Barbosa\Desktop\DatingApp\Dating-App\Backend\DatingAppAPI\DatingAppAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Alan Barbosa\Desktop\DatingApp\Dating-App\Backend\DatingAppAPI\DatingAppAPI\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Alan Barbosa\Desktop\DatingApp\Dating-App\Backend\DatingAppAPI\DatingAppAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Alan Barbosa\Desktop\DatingApp\Dating-App\Backend\DatingAppAPI\DatingAppAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Alan Barbosa\Desktop\DatingApp\Dating-App\Backend\DatingAppAPI\DatingAppAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
