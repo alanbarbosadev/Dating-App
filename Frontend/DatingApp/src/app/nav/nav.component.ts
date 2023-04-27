@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../services/account.service';
-import { Login } from '../models/login.model';
+import { User } from '../models/user.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
@@ -10,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class NavComponent implements OnInit {
   public loginForm!: FormGroup;
-  isLoggedIn: boolean = false;
+  currentUser$!: Observable<User | null>;
 
   constructor(
     private accountService: AccountService,
@@ -22,17 +23,20 @@ export class NavComponent implements OnInit {
       userName: [null, [Validators.required]],
       password: [null, [Validators.required]],
     });
+    this.currentUser$ = this.accountService.currentUser$;
   }
 
-  login() {
-    const loginData = this.loginForm.value;
-    let model: Login = {
+  login(): void {
+    const model: User = {
       userName: this.loginForm.value['userName'],
       password: this.loginForm.value['password'],
     };
     this.accountService.login(model).subscribe((response) => {
-      this.isLoggedIn = true;
       console.log(response);
     });
+  }
+
+  logout(): void {
+    this.accountService.logout();
   }
 }

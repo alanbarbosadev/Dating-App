@@ -1,0 +1,15 @@
+<div
+  *ngIf="!onRegisterMode"
+  class="container d-flex flex-column align-items-center"
+>
+  <h2>Welcome to the best dating app nowdays</h2>
+  <p>
+    <a class="btn btn-lg btn-success mt-5" (click)="setRegisterMode()"
+      >Sign Up</a
+    >
+  </p>
+</div>
+
+<div *ngIf="onRegisterMode" class="container">
+  <app-register (cancelRegister)="cancelRegisterMode($event)"></app-register>
+</div>

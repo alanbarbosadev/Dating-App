@@ -1,0 +1,27 @@
+<form [formGroup]="registerForm">
+  <h2 class="text-center mb-3">Sign Up</h2>
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input
+      type="text"
+      class="form-control"
+      id="username"
+      formControlName="username"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      formControlName="password"
+    />
+  </div>
+  <button type="button" class="btn btn-success mx-2" (click)="register()">
+    Register
+  </button>
+  <button type="button" class="btn btn-danger" (click)="cancel()">
+    Cancel
+  </button>
+</form>
