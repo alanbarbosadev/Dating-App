@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from '../services/account.service';
 import { User } from '../models/user.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private accountService: AccountService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -29,10 +31,14 @@ export class RegisterComponent implements OnInit {
       userName: this.registerForm.value['username'],
       password: this.registerForm.value['password'],
     };
-    this.accountService.register(model).subscribe((response) => {
-      console.log(response);
-      this.cancel();
-    });
+    this.accountService.register(model).subscribe(
+      () => {
+        this.cancel();
+      },
+      (error) => {
+        this.toastr.error(error.error);
+      }
+    );
   }
 
   cancel(): void {
