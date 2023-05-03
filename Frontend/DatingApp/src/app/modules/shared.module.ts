@@ -10,6 +10,6 @@ import { ToastrModule } from 'ngx-toastr';
       positionClass: 'toast-bottom-right',
     }),
   ],
-  exports: [ToastrModule],
+  exports: [ToastrModule], //don't forget to export the modules so the app.module can access them
 })
 export class SharedModule {}

@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
   <div class="container">
     <a class="navbar-brand" routerLink="/">DatingApp</a>
+
     <ul class="navbar-nav me-auto mb-2 mb-md-0">
       <ng-container *ngIf="currentUser$ | async">
         <li class="nav-item">
@@ -19,6 +20,11 @@
           >
         </li>
       </ng-container>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/errors" routerLinkActive="active"
+          >Errors</a
+        >
+      </li>
     </ul>
 
     <div *ngIf="currentUser$ | async as user" class="dropdown">

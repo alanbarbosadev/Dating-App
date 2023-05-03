@@ -34,8 +34,8 @@ namespace DatingAppAPI.Controllers
                 PasswordSalt = hmac.Key
             };
 
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            _context?.Users?.Add(user);
+            await _context!.SaveChangesAsync();
 
             return new UserDTO()
             {
@@ -47,18 +47,18 @@ namespace DatingAppAPI.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<UserDTO>> Login(LoginDTO loginDTO)
         {
-            var user = await _context.Users
+            var user = await _context.Users!
                 .FirstOrDefaultAsync(x => x.UserName == loginDTO.UserName.ToLower());
 
             if (user == null) return Unauthorized("Invalid username");
 
-            using var hmac = new HMACSHA512(user.PasswordSalt);
+            using var hmac = new HMACSHA512(user.PasswordSalt!);
 
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDTO.Password));
 
             for (int i = 0; i < computedHash.Length; i++)
             {
-                if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid password");
+                if (computedHash[i] != user.PasswordHash![i]) return Unauthorized("Invalid password");
             }
 
             return new UserDTO()
@@ -70,7 +70,7 @@ namespace DatingAppAPI.Controllers
 
         private async Task<bool> UserExists(string userName)
         {
-            return await _context.Users.AnyAsync(x => x.UserName == userName.ToLower());
+            return await _context.Users!.AnyAsync(x => x.UserName == userName.ToLower());
         }
     }
 }

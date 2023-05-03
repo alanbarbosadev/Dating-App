@@ -1,6 +1,7 @@
 using DatingAppAPI.Data;
 using DatingAppAPI.Extensions;
 using DatingAppAPI.Interfaces;
+using DatingAppAPI.Middlewares;
 using DatingAppAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,18 @@ builder.Services.AddIdentityServices(builder.Configuration);
 
 var app = builder.Build();
 
+//Data Seed//
+using var scope = app.Services.CreateScope();
+
+var services = scope.ServiceProvider;
+
+var context = services.GetRequiredService<DataContext>();
+
+await context.Database.MigrateAsync();
+
+await Seed.SeedAsync(context);
+//Data Seed//
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -37,6 +50,8 @@ app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.MapControllers();
 

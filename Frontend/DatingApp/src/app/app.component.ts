@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {
-    this.setCurrentUser();
+    this.setCurrentUser(); //sets the current logged in user. It's best to set the current logged in user from the app.component cause it nests all the others components. That being said, it affects all components
   }
 
   setCurrentUser(): void {

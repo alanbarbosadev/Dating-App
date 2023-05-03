@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,10 @@ import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './modules/shared.module';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,9 @@ import { SharedModule } from './modules/shared.module';
     MemberDetailComponent,
     ListsComponent,
     MessagesComponent,
+    TestErrorsComponent,
+    NotFoundComponent,
+    ServerErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,9 +41,11 @@ import { SharedModule } from './modules/shared.module';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    SharedModule,
+    SharedModule, //Add to organize the app.module
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }, //the http interceptors goes here. Angular has it's own interceptors by default. If you set de "multi" property to false, then the interceptor you provided will overide angular interceptors. By setting the "multi" property to true, angular's interceptors and the ones you provided will coexists.
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

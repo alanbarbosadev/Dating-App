@@ -23,12 +23,47 @@ namespace DatingAppAPI.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<byte[]>("PasswordHash")
+                    b.Property<DateTime>("Birthday")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("City")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Interests")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Introduction")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("KnownAs")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("LastActive")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LookingFor")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<byte[]>("PasswordHash")
                         .HasColumnType("BLOB");
 
                     b.Property<byte[]>("PasswordSalt")
-                        .IsRequired()
                         .HasColumnType("BLOB");
 
                     b.Property<string>("UserName")
@@ -38,6 +73,49 @@ namespace DatingAppAPI.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("DatingAppAPI.Models.Photo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("AppUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("PublicId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("Photos");
+                });
+
+            modelBuilder.Entity("DatingAppAPI.Models.Photo", b =>
+                {
+                    b.HasOne("DatingAppAPI.Models.AppUser", "AppUser")
+                        .WithMany("Photos")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("DatingAppAPI.Models.AppUser", b =>
+                {
+                    b.Navigation("Photos");
                 });
 #pragma warning restore 612, 618
         }

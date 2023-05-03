@@ -19,6 +19,8 @@ export class AuthGuard implements CanActivate {
     private toastr: ToastrService
   ) {}
   canActivate(): Observable<boolean> {
+    //you don't need to subscribe to a Observable when your on a "Guard" type class
+    //if there is a autheticated user logged in, then he can have access to the routes that uses this guard [AuthGuard]
     return this.accountService.currentUser$.pipe(
       map((user) => {
         if (user) return true;

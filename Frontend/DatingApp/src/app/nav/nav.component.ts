@@ -35,22 +35,17 @@ export class NavComponent implements OnInit {
       userName: this.loginForm.value['userName'],
       password: this.loginForm.value['password'],
     };
-    this.accountService.login(model).subscribe(
-      () => {
-        this.router.navigateByUrl('/members');
-        this.toastr.success('Login Sucessful!');
-      },
-      (error) => {
-        this.toastr.error(error.error);
-      }
-    );
+    this.accountService.login(model).subscribe(() => {
+      this.router.navigateByUrl('/members');
+      this.toastr.success('Login Successful!');
+    });
   }
 
   logout(): void {
     this.accountService.logout();
     this.router.navigateByUrl('/');
     this.resetLoginData();
-    this.toastr.success('Logout Sucessfully!');
+    this.toastr.success('Logout Successful!');
   }
 
   resetLoginData(): void {
